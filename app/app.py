@@ -57,14 +57,18 @@ def api():
     text = request.json["text"]
     select_n = request.json["select_n"]
 
+
+    print("Select n sentences from each cluster: ", select_n)
+
     #preprocess
     text = text.replace("\n", "")
-    text = text.replace(".", "{split_text}")
-    text = text.replace("。", "{split_text}")
-    text = text.replace("?", "{split_text}")
-    text = text.replace("？", "{split_text}")
-    text = text.replace("!", "{split_text}")
-    text = text.replace("！", "{split_text}")
+    text = text.replace(".", ".{split_text}")
+    text = text.replace("。", "。{split_text}")
+    text = text.replace("?", "?{split_text}")
+    text = text.replace("？", "？{split_text}")
+    text = text.replace("!", "!{split_text}")
+    text = text.replace("！", "！{split_text}")
+    text = text.replace('."','."{split_text}')
     text = text.split("{split_text}")
     text = [string for string in text if string != ""]
 
@@ -100,4 +104,5 @@ def api():
     return jsonify(response)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True) #For localhost testing
+    app.run(host='0.0.0.0', port=5000, debug=True) #For production
