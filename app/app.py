@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, render_template
 import pickle
+import os
 import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
@@ -105,4 +106,4 @@ def api():
 
 if __name__ == '__main__':
     #app.run(debug=True) #For localhost testing
-    app.run(host='0.0.0.0', port=5000, debug=True) #For production
+    app.run(host='0.0.0.0', port=8080, debug=True) #For production

@@ -24,13 +24,14 @@ article.parse()
 text = article.text
 
 #Test web scraping
-url = "http://127.0.0.1:5000/get_article"
+url = "https://onion-backend-ef2kdcjinq-ue.a.run.app/get_article"
 data = {'url': "", "language": ""}
 data["url"] = "https://www.chinadialogue.net/article/show/single/ch/11988-Shelving-of-huge-BRI-coal-plant-highlights-overcapacity-risk-in-Pakistan-and-Bangladesh-"
 data["language"] = "zh"
 headers = {'Content-type': 'application/json'}
-r = requests.get(url, data=json.dumps(data), headers=headers)
+r = requests.post(url, data=json.dumps(data), headers=headers)
 response_obj = r.content.decode("utf-8")
+print(response_obj)
 print(ast.literal_eval(response_obj))
 
 
